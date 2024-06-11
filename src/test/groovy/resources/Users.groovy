@@ -1,17 +1,28 @@
 package resources
 
 import io.restassured.response.Response
+import static io.restassured.RestAssured.*
 
-class Users extends HTTPClient{
+class Users {
 
-  final users = '/users'
-
-  TestDataBuilder testDataBuilder = new TestDataBuilder()
-
-  Response createUser() {
-    post(users, testDataBuilder.user())
+  static Response createUser(int userId) {
+    def userPayload = TestDataBuilder.createUserPayload(userId)
+    return given()
+            .contentType("application/json")
+            .body(userPayload)
+            .when()
+            .post("/users")
+            .then()
+            .extract()
+            .response()
   }
 
-
-
+  static Response getUserById(int userId) {
+    return given()
+            .when()
+            .get("/users/$userId")
+            .then()
+            .extract()
+            .response()
+  }
 }

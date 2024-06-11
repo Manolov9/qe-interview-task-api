@@ -1,19 +1,18 @@
 plugins {
     id 'groovy'
+    id 'java'
 }
-
-group 'org.example'
-version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation 'org.apache.groovy:groovy:4.0.14'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-    testImplementation group: 'io.rest-assured', name: 'rest-assured', version: '5.4.0'
+    implementation 'org.apache.groovy:groovy-all:4.0.16' // Use Groovy 4.x
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    testImplementation 'io.rest-assured:rest-assured:5.4.0'
+    testImplementation 'com.fasterxml.jackson.core:jackson-databind:2.13.1'
 }
 
 test {

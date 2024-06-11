@@ -1,15 +1,9 @@
 package resources
 
-import io.restassured.response.Response
+class ToDo {
 
-class ToDo extends HTTPClient {
-
-  final toDos = '/todos'
-
-  TestDataBuilder testDataBuilder = new TestDataBuilder()
-
-
-  Response createToDo(int userId, String title, boolean completed) {
-    post(toDos, testDataBuilder.userToDo(userId, title, completed))
+  static void createTodoForUser(int userId) {
+    def todoPayload = TestDataBuilder.createTodoPayload(userId)
+    HTTPClient.post("/todos", todoPayload as String)
   }
 }

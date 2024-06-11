@@ -2,44 +2,70 @@ package resources
 
 class TestDataBuilder {
 
-  /**
-   * In this class you will have to write methods that will returns the objects that you want to use in your requests
-   */
-
-
-  static String userToDo(int userId, String title, boolean completed) {
-    return "  {\n" +
-      "    \"userId\": " + userId + ",\n" +
-      "    \"title\": \"" + title + "\",\n" +
-      "    \"completed\": " + completed + "\n" +
-      "  }"
+  static Map createUserPayload(int userId) {
+    return [
+            id: userId,
+            name: 'John Doe',
+            username: 'johndoe',
+            email: 'johndoe@example.com',
+            address: [
+                    street: 'Kulas Light',
+                    suite: 'Apt. 556',
+                    city: 'Gwenborough',
+                    zipcode: '92998-3874',
+                    geo: [
+                            lat: '-37.3159',
+                            lng: '81.1496'
+                    ]
+            ],
+            phone: '1-770-736-8031 x56442',
+            website: 'hildegard.org',
+            company: [
+                    name: 'Romaguera-Crona',
+                    catchPhrase: 'Multi-layered client-server neural-net',
+                    bs: 'harness real-time e-markets'
+            ]
+    ]
   }
 
-  //Complete the user like the ToDos above
-
-  static String user(String name, String userName, String email) {
-    return " {\n" +
-      "    \"name\": " + name + ",\n" +
-      "    \"username\": " + userName + ",\n" +
-      "    \"email\": " + email + ",\n" +
-      "    \"address\": {\n" +
-      "      \"street\": \"Kulas Light\",\n" +
-      "      \"suite\": \"Apt. 556\",\n" +
-      "      \"city\": \"Gwenborough\",\n" +
-      "      \"zipcode\": \"92998-3874\",\n" +
-      "      \"geo\": {\n" +
-      "        \"lat\": \"-37.3159\",\n" +
-      "        \"lng\": \"81.1496\"\n" +
-      "      }\n" +
-      "    },\n" +
-      "    \"phone\": \"1-770-736-8031 x56442\",\n" +
-      "    \"website\": \"hildegard.org\",\n" +
-      "    \"company\": {\n" +
-      "      \"name\": \"Romaguera-Crona\",\n" +
-      "      \"catchPhrase\": \"Multi-layered client-server neural-net\",\n" +
-      "      \"bs\": \"harness real-time e-markets\"\n" +
-      "    }\n" +
-      "  }"
+  static Map createPostPayload(int userId) {
+    return [
+            title: 'Test Post',
+            body: 'This is a test post.',
+            userId: userId
+    ]
   }
 
+  static Map createCommentPayload(int postId) {
+    return [
+            postId: postId,
+            name: 'Test Comment',
+            email: 'testcomment@example.com',
+            body: 'This is a test comment.'
+    ]
+  }
+
+  static Map createAlbumPayload(int userId) {
+    return [
+            title: 'Test Album',
+            userId: userId
+    ]
+  }
+
+  static Map createPhotoPayload(int albumId) {
+    return [
+            albumId: albumId,
+            title: 'Test Photo',
+            url: 'http://placehold.it/600/92c952',
+            thumbnailUrl: 'http://placehold.it/150/92c952'
+    ]
+  }
+
+  static Map createTodoPayload(int userId) {
+    return [
+            title: 'Test Todo',
+            completed: false,
+            userId: userId
+    ]
+  }
 }

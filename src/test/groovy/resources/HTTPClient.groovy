@@ -1,29 +1,27 @@
 package resources
 
-import io.restassured.RestAssured
-import io.restassured.http.ContentType
 import io.restassured.response.Response
+import static io.restassured.RestAssured.*
 
 class HTTPClient {
 
-  final static baseURI = 'https://jsonplaceholder.typicode.com'
-
-  static {
-    RestAssured.baseURI = baseURI
+  static Response post(String endpoint, String payload) {
+    return given()
+            .contentType("application/json")
+            .body(payload)
+            .when()
+            .post(endpoint)
+            .then()
+            .extract()
+            .response()
   }
 
-  //Implement any requests that you might need (POST, GET, GET by id etc.)
-
-  static Response post(String resourceURL, String body) {
-    return RestAssured
-    .given()
-    .body(body)
-    .log()
-    .all()
-    .contentType(ContentType.JSON)
-    .when()
-    .post(resourceURL)
+  static Response get(String endpoint) {
+    return given()
+            .when()
+            .get(endpoint)
+            .then()
+            .extract()
+            .response()
   }
-
-
 }
